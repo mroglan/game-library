@@ -1,0 +1,73 @@
+
+<h1 class="text-center title-font"><%= title %></h1>
+
+<% let totalRating = 0 %>
+<% ratings.forEach(function(rating) { totalRating += rating.stars }); %>
+<% let averageRating = Math.round(totalRating/ratings.length) %>
+
+<div class="container" style="margin-top:2em">
+	<div class="text-center mt-n2" style="font-size:2em">
+		<% if(ratings.length > 0) { %>
+			<% for(let i = 0; i < averageRating; i++) { %>
+				<p style="color:yellow;display:inline"><i class="fas fa-star"></i></p>
+			<% } for(let i = 0; i < 5 - averageRating; i++) {  %>
+				<p style="color:white;display:inline"><i class="fas fa-star"></i></p>
+			<% } %>
+		<% } %>
+	</div>
+	<div class="text-center" style="font-size:1em;font-weight:bold">
+		(Created <%= game.date_format %>)<br>
+		<% game.category.forEach(function(cat) { %>
+			<span class="x-pad"><a href="<%= cat.url %>" class="red"><%= cat.name %></a></span>
+		<% }); %>
+	</div>
+	<div class="row">
+		<div class="col-6 text-center">
+			<dl style="font-size:1.5em">
+				<dt><%= copies %> Total Copies</dt>
+				<dt><a href="<%= game.url %>/available" class="green"><%= copies_available %> Copies Available</a></dt>
+			</dl>
+			<dl style="font-size:1.5em">
+				<dt>Developer: <a href="<%= game.developer.url %>" class="red"><%= game.developer.name %></a></dt>
+				<dt>Summary: <span style="font-weight:normal"><%= game.summary %></span></dt>
+			</dl>
+			<div class="mt-n3 mb-3 text-center" style="font-size:1.5em">
+				<details>
+					<summary style="color:blue">View Reviews</summary>
+					<% if(ratings.length > 0) { %>
+						<% ratings.forEach(function(rating) { %>
+							<details style="clear:both">
+								<summary>
+									<p style="display:inline"><%= rating.title %></p>
+									<% for(let i = 0; i < rating.stars; i++) { %>
+										<p style="color:yellow;display:inline"><i class="fas fa-star"></i></p>
+									<% } for(let i = 0; i < 5 - rating.stars; i++) {  %>
+										<p style="color:white;display:inline"><i class="fas fa-star"></i></p>
+									<% } %>
+								</summary>
+								<p style="float:left;font-size:.75em"><%= rating.review %></p>
+							</details>
+						<% }); %>
+					<% } else {  %>
+						<p>No ratings available</p>
+					<% } %>
+				</details>
+			</div>
+			<div class="mb-3 mt-1 text-center" style="font-size:1.5em;clear:both">
+				<a href="/catalog/games/<%= game._id %>/rate">Rate this game</a>
+			</div>
+			<% if(user.admin == true) { %>
+				<a href="<%= game.url %>/update" class="black"><button type="button" class="btn btn-primary">Update</button></a>
+				<a href="<%= game.url %>/delete" class="black"><button type="button" class="btn btn-primary">Delete</button></a>
+			<% } %>
+		</div>
+		<div class="col-6">
+			<% if(game.image) { %>
+				<div style="width:400px;height:400px;overflow:hidden;border-radius:200px;" class="text-center">
+					<img src="<%= game.picPath %>" style="min-width:100%;min-height:100%">
+				</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+

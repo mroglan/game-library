@@ -1,0 +1,22 @@
+
+.inline-list {
+	display: inline;
+	margin-bottom: .15em;
+	padding: 0 .25em;
+	color: blue;
+}
+
+h1 {
+	padding-bottom: 1em;
+}
+
+.col-4 {
+	padding: 0 1em;
+	margin-bottom: 1em;
+}
+
+.col-4 > div {
+	background-color: rgba(238, 250, 66, .5);
+	border-radius: 3em;
+	border: 1px solid black;
+}

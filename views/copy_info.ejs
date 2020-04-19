@@ -1,0 +1,50 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<h1 class="text-center"><%= title %></h1>
+			<div style="clear:both;font-size:2em">Status: <span style="color:<%= (copy.status === 'Available') ? 'green' : 'red' %>"><%= copy.status %></span></div>
+			<div><span style="font-size:1.5em">Imprint: </span><%= copy.imprint %></div>
+			<% if(copy.due_back) { %>
+				<div style="font-size:1.5em">Available: <%= copy.due_back_format %></div>
+			<% } %>
+			<% if(user.admin == true) { %>
+				<a href="<%= copy.url %>/update"><button class="btn btn-primary">Update</button></a>
+				<a href="<%= copy.url %>/delete"><button class="btn btn-primary">Delete</button></a>
+			<% } %>
+		</div>
+		<div class="col-6">
+			<% if(copy.status === 'Available') { %>
+				<p class="font-weight-bold" style="margin-top:4em">This copy is available to checkout!</p>
+				<div class="card card-body">
+					<h1 class="text-center mb-3">Checkout!</h1>
+					<form method="POST" action="">
+						<div class="form-group">
+							<label for="first-name" style="display:inline">First Name:</label>
+							<input type="text" id="first-name" name="first_name" class="form-control mb-3" style="display:inline-block;max-width:75%" required value="<%= (user.first_name) ? user.first_name : "" %>"><br>
+							<label for="last-name" style="display:inline">Last Name:</label>
+							<input type="text" id="last-name" name="last_name" class="form-control" style="display:inline-block;max-width:75%" required value="<%= user.last_name ? user.last_name : "" %>">
+						</div>
+						<div class="form-group">
+							<label for="address">Address:</label>
+							<textarea type="text" id="address" name="address" class="form-control" rows="2" placeholder="Address" required ><%= user.address ? user.address : "Address" %></textarea>
+						</div>
+						<button class="btn btn-primary" type="submit">Checkout</button>
+					</form>
+					<% if(typeof errors != 'undefined') { %>
+						<% errors.forEach(function(error) { %>
+							<div class="alert alert-warning alert-dismissible fade show" role="alert">
+								<%= error.msg %>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						<% }); %>
+					<% } %>
+				</div>
+			<% } else { %>
+				<p class="font-weight-bold" style="margin-top:4em">This copy is not available to checkout</p>
+			<% } %>
+		</div>
+	</div>
+</div>

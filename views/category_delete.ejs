@@ -1,0 +1,9 @@
+
+<h1 class="text-center"><%= title %></h1>
+
+<p class="font-weight-bold">Are you sure you want to delete this category?</p>
+
+<form method="POST" action="">
+	<input type="hidden" name="catId" value="<%= category._id %>">
+	<button class="btn btn-primary" type="submit">Delete</button>
+</form>

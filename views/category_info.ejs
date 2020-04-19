@@ -1,0 +1,13 @@
+
+<h1><%= title %></h1>
+
+<dl>
+	<% games.forEach(function(game) { %>
+		<dt><%= game.title %></dt>
+		<dd><%= game.summary %></dd>
+	<% }); %>
+	<% if(user.admin == true) { %>
+		<a href="<%= category.url %>/update"><button class="btn btn-primary">Update</button></a>
+		<a href="<%= category.url %>/delete"><button class="btn btn-primary">Delete</button></a>
+	<% } %>
+</dl>

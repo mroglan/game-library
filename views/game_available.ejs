@@ -1,0 +1,8 @@
+
+<h1 class="text-center"><%= title %></h1>
+
+<dl>
+	<% copies.forEach(function(copy) { %>
+		<dt><a href="<%= copy.url %>"><%= copy._id %></a></dt>
+	<% }); %>
+<dl>

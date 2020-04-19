@@ -1,0 +1,12 @@
+
+<h1><%= title %></h1>
+
+<div class="container">
+	<dl>
+		<% developers.sort((a, b) => { let textA = a.last_name.toUpperCase(); let textB = b.last_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+		<% developers.forEach(function(developer) { %>
+			<dt><a href="<%= developer.url %>" class="blue"><%= developer.name %></dt></a>
+			<dd><%= developer.birth_format %> - <%= developer.death_format %></dd>
+		<% }); %>
+	</dl>
+</div>

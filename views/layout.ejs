@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="id=edge">
+	<link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
+	<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+	<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+	<style>
+		body { background-color: rgba(74, 29, 178, .5); }
+	</style>
+	<title>Game Library</title>
+</head>
+
+<body>
+	<% if(typeof user != 'undefined') { %>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<ul class="sidebar-nav mt-2" style="list-style-type:none">
+						<h6><a href="/users/profile">My Profile</a></h6>
+						<h6><a href="/users/mygames/">My Games</a></h6>
+						<h6><a href="/users/logout">Logout</a></h6>
+					</ul>
+					<ul class="sidebar-nav" style="list-style-type:none">
+						<h6>Useful Links: </h6>
+						<li><a href="/catalog/dashboard">Dashboard</a></li>
+						<li><a href="/catalog/games">Games</a></li>
+						<li><a href="/catalog/developers">Developers</a></li>
+						<li><a href="/catalog/copies">Game Copies</a></li>
+						<li><a href="/catalog/categories">Categories</a></li>
+					</ul>
+					<ul class="sidebar-nav" style="list-style-type:none">
+						<h6>Help & Support:</h6>
+						<li><a href="/help/faqs">FAQs</a></li>
+						<li><a href="/help/support">Contact Us</a></li>
+					</ul>
+					<% if(user.admin == true) { %>
+						<ul class="sidebar-nav" style="list-style-type:none">
+							<h6>Admin Links: </h6>
+							<li><a href="/catalog/games/create">Add a game</a></li>
+							<li><a href="/catalog/developers/create">Add a developer</a></li>
+							<li><a href="/catalog/copies/create">Add a game copy</a></li>
+							<li><a href="/catalog/categories/create">Add a category</a></li>
+							<li><a href="/help/faqs/create">Add a FAQ</a></li>
+							<li><a href="/help/support/admin">Respond to Messages</a></li>
+						</ul>
+					<% } %>
+				</div>
+				<div class="col-sm-10">
+					<%- body %>
+				</div>
+			</div>
+		</div>
+	<% } else { %>
+		<div class="container">
+			<%- body %>
+		</div>
+	<% } %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" data-auto-replace-svg="nest"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+<script src="/js/fileUpload.js"></script>
+
+<% if(typeof a1 != 'undefined' && a1 === 'copyCreate') { %>
+	<%- include('./partials/footer') %>
+<% } else if( typeof a1 != 'undefined' && a1 === 'game_list') {%>
+	<%- include('./partials/footer2') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'developer_list') { %>
+	<%- include('./partials/footer3') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'copy_list') { %>
+	<%- include('./partials/footer4') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'game_info') { %>
+	<%- include('./partials/footer5') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'user_profile') { %>
+	<%- include('./partials/footer6') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'rate_game') {  %>
+	<%- include('./partials/footer7') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'user_games') {  %>
+	<%- include('./partials/footer8') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'faq_list') { %>
+	<%- include('./partials/footer9') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'chat_list') { %>
+	<%- include('./partials/footer10') %>
+<% } else if(typeof a1 != 'undefined' && a1 === 'chat') { %>
+	<%- include('./partials/footer11') %>
+<% } %>
+</body>
+
+</html>

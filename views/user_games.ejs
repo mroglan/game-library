@@ -1,0 +1,20 @@
+
+<h1><%= title %></h1>
+
+<div class="row">
+	<% copies.forEach(function(copy) { %>
+		<div class="col-3" style="border-radius:15px;padding:10px;">
+			<div style="width:95%;max-height:250px;overflow:hidden;margin-left:auto;margin-right:auto;border-radius:50px;" class="text-center">
+				<img src="<%= copy.game.picPath %>" style="min-width:100%;min-height:100%">
+			</div>
+			<h3 class="text-center" style="color:green"><a href="<%= copy.game.url %>"><%= copy.game.title %></a></h3>
+			<p class="text-center"><a href="<%= copy.url %>">(<%= copy._id.toString().substring(0, 10) + '...' %>)</a></p>
+			<% if(copy.is_overdue) { %>
+				<p style="color:red" class="text-center">Overdue</p>
+			<% } else {  %>
+				<p class="text-center">Due back: <%= copy.due_back_format %></p>
+			<% } %>
+			<div class="text-center"><a href="<%= copy.url %>/return"><button type="button" class="btn btn-primary">Return</button></a></div>
+		</div>
+	<% }); %>
+</div>

@@ -1,0 +1,54 @@
+
+.message-box {
+	background-color: rgba(238, 246, 241);
+	border-radius: 30px;
+	border: 1px solid black;
+	height: 100vh;
+	padding: 0 10%;
+}
+
+.chat-title h1 {
+	font-size: 4em;
+}
+
+.chat-title {
+	height: 15%;
+}
+
+.content {
+	height: 60%;
+	overflow-y: scroll;
+}
+
+.writing {
+	height: 35%;
+}
+
+#message {
+	width: 100%;
+}
+
+.message {
+	border-radius: 10px;
+	max-width: 75%;
+	clear: both;
+	font-size: 1.25em;
+	padding: 5px 10px;
+}
+
+.fl-r {
+	float: right;
+}
+
+.green {
+	background-color: rgba(65, 154, 14, .9);
+}
+
+.blue {
+	background-color: blue;
+}
+
+.fl-l {
+	float: left;
+}
+

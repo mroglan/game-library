@@ -1,0 +1,7 @@
+<h3 class="mt-2"><%= title %></h3>
+<dl>
+	<% chats.sort((a, b) => { let mesA = a.messages[messages.length-1].date; let mesB = b.messages[messages.length-1].date; return (mesA < mesB) ? -1 : (mesA > mesB) ? 1 : 0;}); %>
+	<% chats.forEach(function(chat) { %>
+		<dt class="mb-2" style="font-size:2em"><a href="<%= chat.url %>/admin"><%= chat.name %></a></dt>
+	<% }); %>
+</dl>

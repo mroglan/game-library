@@ -1,0 +1,86 @@
+
+<h1><%= title %></h1>
+
+<form method="POST" action="">
+	<div class="form-group">
+		<label for="game">Game: </label>
+		<select id="game" name="game" class="form-control" required="true" type="select" placeholder="Select Game">
+			<% games.sort((a, b) => { let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+			<% games.forEach(function(game) { %>
+				<% if(typeof copy != 'undefined' && copy.game.title == game.title) { %>
+					<option value="<%= game._id %>" selected><%= game.title %></option>
+				<% } else { %>
+					<option value="<%= game._id %>"><%= game.title %></option>
+				<% } %>
+			<% }); %>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="imprint">Imprint </label>
+		<input id="imprint" name="imprint" type="text" required="true" class="form-control" placeholder="Info on the game's publication..." value="<%= typeof copy != 'undefined' ? copy.imprint : '' %>" />
+	</div>
+	<div class="form-group">
+		<label for="status">Status: </label>
+		<select id="status" name="status" type="select" required="true" placeholder="Select status" class="form-control">
+			<% if(typeof copy != 'undefined' && copy.status == 'Maintenance') { %>
+				<option value="Maintenance" selected>Maintenance</option>
+				<option value="Available">Available</option>
+				<option value="Loaned">Loaned</option>
+				<option value="Reserved">Reserved</option>
+			<% } else if(typeof copy != 'undefined' && copy.status == 'Available') { %>
+				<option value="Maintenance">Maintenance</option>
+				<option value="Available" selected>Available</option>
+				<option value="Loaned">Loaned</option>
+				<option value="Reserved">Reserved</option>
+			<% } else if(typeof copy != 'undefined' && copy.status == 'Loaned') { %>
+				<option value="Maintenance">Maintenance</option>
+				<option value="Available">Available</option>
+				<option value="Loaned" selected>Loaned</option>
+				<option value="Reserved">Reserved</option>
+			<% } else if(typeof copy != 'undefined' && copy.status == 'Reserved') { %>
+				<option value="Maintenance">Maintenance</option>
+				<option value="Available">Available</option>
+				<option value="Loaned">Loaned</option>
+				<option value="Reserved" selected>Reserved</option>
+			<% } else { %>
+				<option value="Maintenance">Maintenance</option>
+				<option value="Available">Available</option>
+				<option value="Loaned">Loaned</option>
+				<option value="Reserved">Reserved</option>
+			<% } %>
+		</select>
+	</div>
+	<div class="form-group status-depend">
+		<label for="due_back">Due Back: </label>
+		<input id="due_back" name="due_back" class="form-control nullify" type="date" value="<%= typeof copy != 'undefined' ? copy.due_date_yyyy_mm_dd : '' %>" />
+	</div>
+	<div class="form-group status-depend">
+		<label for="user">For: </label>
+		<select id="user" name="copyUser" class="form-control nullify" type="select" placeholder="Select a User">
+			<% siteUsers.forEach(function(siteUser) { %>
+				<% if(typeof copy != 'undefined' && typeof copy.copy_user != 'undefined') { %>
+					<% if(copy.copy_user._id == siteUser._id.toString() || copy.copy_user == siteUser._id.toString()) { %>
+						<option value="<%= siteUser._id %>" selected><%= siteUser.name %></option>
+					<% } else { %>
+						<option value="<%= siteUser._id %>"><%= siteUser.name %></option>
+					<% } %>
+				<% } else { %>
+					<option value="<%= siteUser._id %>"><%= siteUser.name %></option>
+				<% } %>
+			<% }); %>
+		</select>
+	</div>
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if(typeof errors != 'undefined') { %>
+	<% errors.forEach(function(error) { %>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<%= error.msg %>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	<% }); %>
+<% } %>
+

@@ -1,0 +1,27 @@
+
+<div class="row mt-4">
+	<div class="col-4">
+		<h1><%= title %></h1>
+		<div class="mb-3"><button type="button" class="btn btn-primary" id="start_button">Start a new Chat</button></div>
+		<div class="must_click">
+			<div class="card card-body">
+				<form method="POST" action="">
+					<div class="form-group">
+						<label for="chat_name">Chat Name:</label>
+						<input type="text" id="chat_name" name="chat_name" class="form-control" required>
+					</div>
+					<button type="submit" class="btn btn-primary" style="display:inline">Create Chat</button>
+					<button type="button" id="cancel_button" class="btn btn-primary" style="display:inline">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-4">
+		<h3 class="mt-2">Your existing Chats:</h3>
+		<dl>
+		<% chats.forEach(function(chat) { %>
+			<dt class="mb-2" style="font-size:2em"><a href="<%= chat.url %>"><%= chat.name %></a></dt>
+		<% }); %>
+		</dl>
+	</div>
+</div>

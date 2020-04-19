@@ -1,0 +1,18 @@
+
+<h1 class="text-center"><%= title %></h1>
+
+<% if(games.length > 0) { %>
+	<p class="font-weight-bold" style="color:red">You need to delete the following games first:</p>
+	<dl>
+		<% games.forEach(function(game) { %>
+			<dt style="color:black"><a href="<%= game.url %>"><%= game.title %></a></dt>
+			<dd>Id: <%= game._id %></dd>
+		<% }); %>
+	</dl>
+<% } else { %>
+	<p>Are you sure you want to do this? </p>
+	<form method="POST" action="">
+		<input type="hidden" name="devId" value="<%= developer._id %>">
+		<button class="btn btn-primary" type="submit">Delete</button>
+	</form>
+<% } %>

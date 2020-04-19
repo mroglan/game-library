@@ -1,0 +1,42 @@
+.profile-div {
+	height: 300px;
+	border: 1px solid black;
+	border-radius: 150px;
+	overflow: hidden;
+}
+
+.profile-div img {
+	width: 100%;
+}
+
+.user_name {
+	font-size: 5em;
+	overflow: hidden;
+}
+
+.changable {
+	position: relative;
+}
+
+.move-right {
+	position: absolute;
+	left: 37%;
+	bottom: 0;
+}
+
+.stay-left {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+#user_info, #user_address {
+	border: 1px solid black;
+	border-radius: 50px;
+}
+
+.block {
+	display: block;
+	position: static;
+	margin: 0 auto;
+}

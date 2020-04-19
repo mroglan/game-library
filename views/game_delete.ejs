@@ -1,0 +1,16 @@
+
+<h1 class="text-center"><%= title %></h1>
+
+<% if(copies.length > 0) { %>
+	<p class="font-weight-bold">You will be deleting the following copies upon deletion: </p>
+	<dl>
+		<% copies.forEach(function(copy) { %>
+			<dt><a href="copy.url"><%= copy._id %></a></dt>
+		<% }); %>
+	</dl>
+<% } %>
+
+<form method="POST" action="">
+	<input name="gameid" type="hidden" value="<%= game._id %>">
+	<button class="btn btn-primary" type="submit">Delete</button>
+</form>

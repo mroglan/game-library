@@ -1,0 +1,26 @@
+
+.star {
+	display:inline-block;
+	width:20%;
+}
+
+.star i {
+	font-size:6em;
+}
+
+.white {
+	color: white;
+}
+
+.card {
+	background-color: rgba(53, 93, 172);
+}
+
+.rating-hover {
+	color: rgba(234, 250, 9, .75);
+	cursor: pointer;
+}
+
+.rating-chosen {
+	color: rgba(234, 250, 9, 1);
+}

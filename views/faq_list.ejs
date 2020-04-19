@@ -1,0 +1,31 @@
+
+<h1><%= title %></h1>
+
+<div class="mt-3 row">
+	<% faqs.sort((a, b) => { let voteA = a.votes; let voteB = b.votes; return (voteA < voteB) ? 1 : (voteA > voteB) ? -1 : 0;}); %>
+	<% faqs.forEach(function(faq) { %>
+		<div class="col-7">
+			<details style="display:block" class="mb-2">
+				<summary style="font-size:1.5em;background-color:rgba(161,25,120,.8);border-radius:10px">
+					<%= faq.question %>
+					<% var liked = false %>
+					<% if(faq.voted_users != 'undefined') { %>
+						<% faq.voted_users.forEach(function(voted_user) { %>
+							<% if(voted_user.toString() == user._id.toString()) { %>
+								<% liked = true %>
+							<% } %>
+						<% }); %>
+					<% } %>
+					<% if(!liked) { %>
+						<button type="button" class="up-vote-button" style="background-color:inherit;border:none;" value="<%= faq._id %>"><i class="far fa-thumbs-up"></i></button>(<span class="vote_count"><%= faq.votes %></span>)
+					<% } else { %>
+						<button type="button" class="up-vote-button green" style="background-color:inherit;border:none;" value="<%= faq._id %>"><i class="far fa-thumbs-up"></i></button>(<span class="vote_count"><%= faq.votes %></span>)
+					<% } %>
+				</summary>
+				<p><%= faq.answer %></p>
+			</details>
+		</div>
+	<% }); %>
+</div>
+
+<input id="userid" type="hidden" value="<%= user._id %>">

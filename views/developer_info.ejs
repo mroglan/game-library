@@ -1,0 +1,18 @@
+
+<h1><%= title %> <span style="font-size:.5em">(<%= developer.birth_format %> - <%= developer.death_format %>)</span></h1>
+
+<div class="container" style="margin-top:3em">
+	<h4>Games: </h4>
+	<% games.sort((a, b) => { let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+	<dl>
+		<% games.forEach(function(game) { %>
+			<dt><a href="<%= game.url %>"><%= game.title %></a></dt>
+			<dd><span class="font-weight-bold">Summary: </span><%= game.summary %></dd>
+		<% }); %>
+	</dl>
+	<% if(user.admin == true) { %>
+		<a href="<%= developer.url %>/update"><button class="btn btn-primary">Update</button></a>
+		<a href="<%= developer.url %>/delete"><button class="btn btn-primary">Delete</button></a>
+	<% } %>
+</div>
+

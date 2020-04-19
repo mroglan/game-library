@@ -1,0 +1,62 @@
+
+
+<h1><%= title %></h1>
+
+<form method="POST" action="">
+	<div class="form-group">
+		<label for="title">Title: </label>
+		<input id="title" name="title" type="text" class="form-control" required="true" value="<%= typeof game != 'undefined' ? game.title : '' %>" />
+	</div>
+	<div class="form-group">
+		<label for="developer">Developer: </label>
+		<select type="select" id="developer" name="developer" class="form-control" required="true" placeholder="Select Developer">
+			<% developers.sort((a,b) => { let textA = a.last_name.toUpperCase(); let textB = b.last_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+			<% developers.forEach(function(developer) { %>
+				<option value="<%= developer._id %>"><%= developer.name %></option>
+			<% }); %>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="summary">Summary: </label>
+		<textarea id="summary" name="summary" class="form-control" type="textarea" required="true" placeholder="Summary" rows="3"><%= typeof game != 'undefined' ? game.summary : '' %></textarea>
+	</div>
+	<div class="form-group">
+		<label>Category: </label>
+		<% categories.forEach(function(category) { %>
+			<div style="display:inline;padding-right:10px">
+				<% if(category.checked == true) { %>
+					<input class="checkbox-input" type="checkbox" name="category" id="<%= category._id %>" value="<%= category._id %>" checked />
+				<% } else { %>
+					<input class="checkbox-input" type="checkbox" name="category" id="<%= category._id %>" value="<%= category._id %>" />
+				<% } %>
+				<label for="<%= category._id %>"><%= category.name %>
+			</div>
+		<% }); %>
+	</div>
+	<div class="form-group">
+		<label for="create_date">Date Created: </label>
+		<input id="create_date" name="create_date" class="form-control" required="true" type="date" value="<%= typeof game != 'undefined' ? game.date_yyyy_mm_dd : '' %>" />
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<div class="form-group">
+				<div style="max-width:300px">
+					<label for="image">Image: (required)</label>
+					<input id="image" name="image" class="form-control filepond" type="file">
+				</div>
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if(typeof errors != 'undefined') { %>
+	<% errors.forEach(function(error) { %>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<%= error.msg %>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	<% }); %>
+<% } %>

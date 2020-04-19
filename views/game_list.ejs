@@ -1,0 +1,26 @@
+
+<h1 class="text-center"><%= title %></h1>
+
+<div class="container">
+	<div class="row">
+		<% games.forEach(function(game, index) { %>
+			<div class="col-4 text-center">
+				<div>
+					<div class="font-weight-bold"><h4><a href="<%= game.url %>"><%= game.title %></a></h4></div>
+					<div><a href="<%= game.developer.url %>"><%= game.developer.name %></a></div>
+					<dl>
+						<% game.category.sort((a, b) => { let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+						<% game.category.forEach(function(cat) { %>
+							<dd class="inline-list"><%= cat.name %></dd>
+						<% }); %>
+					</dl>
+					<% if(availables[index] != null) { %>
+						<a href="/catalog/copies/<%= availables[index]._id %>"><button type="button" class="btn btn-primary mb-3">Checkout a Copy</button></a>
+					<% } else { %>
+						<p class="text-center">No available copies</p>
+					<% } %>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+</div>

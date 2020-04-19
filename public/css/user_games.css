@@ -1,0 +1,7 @@
+
+h3 a, p a {
+	color: inherit;
+}
+h3 a:hover, p a:hover {
+	color: inherit;
+}

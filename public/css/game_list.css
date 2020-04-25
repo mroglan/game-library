@@ -10,13 +10,8 @@ h1 {
 	padding-bottom: 1em;
 }
 
-.col-4 {
-	padding: 0 1em;
-	margin-bottom: 1em;
-}
-
-.col-4 > div {
-	background-color: rgba(238, 250, 66, .5);
+.col-lg-4 > div {
+	
 	border-radius: 3em;
 	border: 1px solid black;
 }

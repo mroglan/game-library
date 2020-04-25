@@ -1,26 +1,46 @@
 
-<h1 class="text-center"><%= title %></h1>
+<h1 class="text-center display-1 pb-0"><%= title %></h1>
 
 <div class="container">
 	<div class="row">
-		<% games.forEach(function(game, index) { %>
-			<div class="col-4 text-center">
-				<div>
-					<div class="font-weight-bold"><h4><a href="<%= game.url %>"><%= game.title %></a></h4></div>
-					<div><a href="<%= game.developer.url %>"><%= game.developer.name %></a></div>
-					<dl>
-						<% game.category.sort((a, b) => { let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
-						<% game.category.forEach(function(cat) { %>
-							<dd class="inline-list"><%= cat.name %></dd>
-						<% }); %>
-					</dl>
-					<% if(availables[index] != null) { %>
-						<a href="/catalog/copies/<%= availables[index]._id %>"><button type="button" class="btn btn-primary mb-3">Checkout a Copy</button></a>
-					<% } else { %>
-						<p class="text-center">No available copies</p>
-					<% } %>
+		<div class="card-group">
+			<% games.forEach(function(game, index) { %>
+				<div class="col-lg-4 mb-4 col-sm-6">
+					<div class="card w-100 h-100 pt-2 overflow-hidden bg-secondary">
+						<div class="card-header">
+							<h2 class="card-title mb-0"><a href="<%= game.url %>" class="text-success font-weight-bold"><%= game.title %></a></h2>
+						</div>
+						<div class="mx-auto" style="width:90%">
+							<figure class="card-img-top text-center overflow-hidden w-100" style="max-height:200px">
+								<img src="<%= game.picPath %>" class="figure-img img-fluid rounded-lg" alt="<%= game.title %>'s picture">
+							</figure>
+						</div>
+						<hr class="my-0">
+						<div class="card-body">
+							<p class="card-info">
+								Developer:
+								<a href="<%= game.developer.url %>" class="text-info"><%= game.developer.name %></a>
+							</p>
+							<p class="card-info w-100">
+								<% game.category.sort((a, b) => { let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+								<ul class="list-group list-group-horizontal flex-wrap justify-content-center">
+								<% game.category.forEach(function(category) { %>
+									<li class="list-group-item py-2 px-3"><a href="<%= category.url %>" class="text-info"><%= category.name %></a></li>
+								<% }); %>
+								</ul>
+							</p>
+						</div>
+						<div class="card-footer text-center">
+							<% if(availables[index] != null) { %>
+								<a href="/catalog/copies/<%= availables[index]._id %>"><button type="button" class="btn btn-primary mb-3">Checkout a Copy</button></a>
+							<% } else { %>
+								<p class="text-center">No available copies</p>
+							<% } %>
+						</div>
+					</div>
 				</div>
-			</div>
-		<% }); %>
+			<% }); %>
+		</div>
 	</div>
 </div>
+

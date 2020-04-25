@@ -1,14 +1,14 @@
 
 <div class="row">
-	<div class="col-8 ml-auto mr-auto message-box">
+	<div class="col-8 mx-auto message-box">
 		<div class="chat-title">
-			<h1 class="text-center"><%= chat.name %></h1>
+			<h1 class="text-center display-2"><%= chat.name %></h1>
 		</div>
 		<div class="content">
 			<% chat.messages.forEach(function(message) { %>
 				<% if(message.message_user.toString() == user._id.toString()) { %>
 					<div class="green message fl-r mb-3">
-						<span><%= message.message %></span>
+						<div><%= message.message %></div>
 					</div>
 				<% } else { %>
 					<div class="blue message fl-l mb-3">
